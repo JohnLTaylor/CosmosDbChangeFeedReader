@@ -28,18 +28,18 @@ namespace CosmosDBChangeFeedReader
 
             if (isDevelopment) //only add secrets in development
             {
-                builder.AddUserSecrets<UserCollectionDbSettings>();
+                builder.AddUserSecrets<UserDbSettings>();
             }
 
             var configuration = builder.Build();
             
             var services = new ServiceCollection()
-               .Configure<UserCollectionDbSettings>(configuration.GetSection("UserCollectionDbSettings"))
+               .Configure<UserDbSettings>(configuration.GetSection("UserDbSettings"))
                .Configure<LeasesDbSettings>(configuration.GetSection("LeasesDbSettings"))
                .AddOptions()
                .BuildServiceProvider();
 
-            var userCollectionDbSettings = services.GetService<IOptions<UserCollectionDbSettings>>().Value;
+            var userCollectionDbSettings = services.GetService<IOptions<UserDbSettings>>().Value;
             var userCollectionInfo = new DocumentCollectionInfo()
             {
                 DatabaseName = userCollectionDbSettings.DatabaseName,

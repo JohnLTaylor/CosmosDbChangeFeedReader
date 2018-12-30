@@ -2,7 +2,7 @@
 
 namespace CosmosDBChangeFeedReader
 {
-    public class UserCollectionDbSettings
+    public class UserDbSettings
     {
         public Uri Uri { get; set; }
         public string AccountKey { get; set; }
